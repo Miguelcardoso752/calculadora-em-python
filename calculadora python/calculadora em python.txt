@@ -1,0 +1,35 @@
+def calculadora():
+    print("=== Calculadora ===")
+    print("Operações: + - * /")
+    print("Digite 'sair' para encerrar\n")
+ 
+    while True:
+        entrada = input("Cálculo (ex: 10 + 5): ").strip()
+ 
+        if entrada.lower() == "sair":
+            print("Até mais!")
+            break
+ 
+        for op in ("+", "-", "*", "/"):
+            if op in entrada:
+                partes = entrada.split(op)
+                if len(partes) == 2:
+                    try:
+                        a = float(partes[0].strip())
+                        b = float(partes[1].strip())
+                    except ValueError:
+                        print("Erro: digite números válidos.\n")
+                        break
+ 
+                    if op == "/" and b == 0:
+                        print("Erro: divisão por zero.\n")
+                    else:
+                        ops = {"+": a + b, "-": a - b, "*": a * b, "/": a / b}
+                        resultado = ops[op]
+                        print(f"Resultado: {resultado:g}\n")
+                    break
+        else:
+            print("Operação inválida. Use +, -, * ou /.\n")
+ 
+if __name__ == "__main__":
+    calculadora()
